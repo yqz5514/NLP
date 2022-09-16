@@ -52,8 +52,33 @@ print(20*'-' + 'End Q2' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q3' + 20*'-')
 
-string_story = "dhfhuehfsbvhfdnbnx{FSsffs,ee}sgssdgfyegfhs"
-print(string_story.startswith('{'))
+str = "dhfhuehfsbvhfdnbnx{FSsffs,ee}sgss{dgfy}egfhs"
+substr = "{"
+
+#print(string_story.find('{'))
+#print(string_story[string_story.find('{'):string_story.find('}')])
+start = 0
+end = 0
+for i in str:
+    if i == '{':
+        start = str.find(i, start) + 1
+    elif i == '}':
+        end = str.find(i, end)
+        print(str[start:end])
+
+#?????????????????
+        
+         
+
+#def find_all(a_str, sub):
+#    start = 0
+#    while True:
+#        start = a_str.find(sub, start)
+#        if start == -1: return
+#        yield start
+#        start += len(sub)
+
+#print(list(find_all(str,substr)))
 
 print(20*'-' + 'End Q3' + 20*'-')
 
@@ -66,13 +91,19 @@ print(20*'-' + 'End Q3' + 20*'-')
 print(20*'-' + 'Begin Q4' + 20*'-')
 
 
-
-
-
-
-
+#def read_first_lins(data, n):
+#    f = open(data,'r',encoding = 'utf-8')
+#    return print(f.readline(n))    
+#
+#read_first_lins("T1.txt", 4)
+def read_lines(data, n): 
+    f = open(data,'r',encoding = 'utf-8')
+    head = [next(f) for x in range(n)]
+    return print(head)
 
 print(20*'-' + 'End Q4' + 20*'-')
+
+#%%%
 # =================================================================
 # Class_Ex5:
 # Write a function that read a file line by line and store it into a list.
@@ -80,14 +111,16 @@ print(20*'-' + 'End Q4' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q5' + 20*'-')
 
-
-
+with open('T1.txt') as file:
+    lines = file.readlines()
+    lines = [line.rstrip() for line in lines]
+print(lines)
 
 
 
 
 print(20*'-' + 'End Q5' + 20*'-')
-
+#%%
 # =================================================================
 # Class_Ex6:
 # Write a function that read two text files and combine each line from first
