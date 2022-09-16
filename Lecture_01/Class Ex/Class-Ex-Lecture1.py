@@ -3,9 +3,17 @@
 # Write a function that prints all the chars from string1 that appears in string2.
 # Note: Just use the Strings functionality no packages should be used.
 # ----------------------------------------------------------------
+#%%
 print(20*'-' + 'Begin Q1' + 20*'-')
 
+s1 = 'abcdefg'
+s2 = 'ab'
 
+for i in s1:
+    if i in s2:
+      
+       print(f' Duplicate elements are:{i}')
+        
 
 
 
@@ -13,6 +21,7 @@ print(20*'-' + 'Begin Q1' + 20*'-')
 
 print(20*'-' + 'End Q1' + 20*'-')
 
+#%%
 # =================================================================
 # Class_Ex2:
 # Write a function that counts the numbers of a particular letter in a string.
@@ -21,15 +30,20 @@ print(20*'-' + 'End Q1' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q2' + 20*'-')
 
-
-
-
-
-
-
-
+s1 = 'abstract'
+count = 0
+list = []
+for i in s1:
+    if i == 'a':
+        count += 1
+        
+print(f'number of a: {count}')
+        
+#print(s1.count('a'))
 
 print(20*'-' + 'End Q2' + 20*'-')
+
+#%%
 # =================================================================
 # Class_Ex3:
 # Write a function that reads the Story text and finds the strings in the curly brackets.
@@ -38,15 +52,12 @@ print(20*'-' + 'End Q2' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q3' + 20*'-')
 
-
-
-
-
-
-
-
+string_story = "dhfhuehfsbvhfdnbnx{FSsffs,ee}sgssdgfyegfhs"
+print(string_story.startswith('{'))
 
 print(20*'-' + 'End Q3' + 20*'-')
+
+#%%
 # =================================================================
 # Class_Ex4:
 # Write a function that read the first n lines of a file.
@@ -232,3 +243,4 @@ print(20*'-' + 'Begin Q15' + 20*'-')
 
 
 print(20*'-' + 'End Q15' + 20*'-')
+# %%
