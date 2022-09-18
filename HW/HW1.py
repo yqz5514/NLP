@@ -51,7 +51,7 @@ def get_initials(x):
         if x[i] == ' ':
             print(x[i+1].upper())
             return 
-print(get_initials(x))
+print(get_initials(name))
 
 #
 #def printInitials(name):
@@ -77,7 +77,9 @@ print(get_initials(x))
 #• It must contain at least one numeric digit.
 
 password = input('Please set up the password:')
-
+def password_validation(x):
+    if len(x) < 8:
+        print('length should be at least 8')
 
 #%%
 #E.5:
