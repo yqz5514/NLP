@@ -76,21 +76,51 @@ print(get_initials(name))
 #• It must contain at least one lowercase letter.
 #• It must contain at least one numeric digit.
 
-password = input('Please set up the password:')
-def password_validation(x):
-    if len(x) < 8:
-        print('length should be at least 8')
+length = lower = upper = digit = False
+
+password = input('Enter the password: ')
+
+if len(password)>= 8:
+    length = True
+    
+    for letter in password:
+        if letter.islower():
+            lower = True
+        elif letter.isupper():
+            upper = True
+        elif letter.isdigit():
+            digit = True
+
+
+if length and lower and upper and digit:
+    print('That is a valid password.')
+else:
+    print('That password is not valid.')
 
 #%%
 #E.5:
 #Write a python script that reads a given string character by character and count the repeated
 #characters then store it by length of those character(s).
+import collections
+str1 = 'thequickbrownfoxjumpsoverthelazydog'
+d = collections.defaultdict(int)
+for c in str1:
+    d[c] += 1
+#print(d)
 
-#%%
+for c in sorted(d, key=d.get, reverse=True):
+  if d[c] > 1:
+      dict={'repeated_char':c, 'Num_repeated':d[c]}
+      print(dict)
+      
+#&&
 #E.6:
 #Write a python script to find all lower and upper case combinations of a given string.
 #Example: input: abc output: ’abc’, ’abC’, ’aBc’, ...
-
+import itertools
+def combination(str1):
+    result = map(''.join, itertools.product(*((c.lower(), c.upper()) for c in str1)))
+    return list(result)
 #%%
 #E.7:
 #Write a python script that

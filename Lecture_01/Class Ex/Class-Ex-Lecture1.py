@@ -93,7 +93,7 @@ print(20*'-' + 'Begin Q4' + 20*'-')
 
 #def read_first_lins(data, n):
 #    f = open(data,'r',encoding = 'utf-8')
-#    return print(f.readline(n))    
+#    return print(f.readlines(n))    
 #
 #read_first_lins("T1.txt", 4)
 def read_lines(data, n): 
