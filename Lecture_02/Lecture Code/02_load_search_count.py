@@ -1,3 +1,4 @@
+#%%
 from nltk.book import *
 import nltk
 
@@ -5,6 +6,7 @@ print(text1.vocab())
 print(type(text1))
 print(len(text1))
 
+#%%
 from nltk.corpus import gutenberg
 print(gutenberg.fileids())
 print(nltk.corpus.gutenberg.fileids())

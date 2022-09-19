@@ -1,3 +1,4 @@
+#%%
 from collections import deque
 
 list = ["a","b","c"]
@@ -16,3 +17,4 @@ print(deq.clear())
 list = ["a","b","c"]
 deq = deque(list)
 print(deq.count("a"))
+# %%

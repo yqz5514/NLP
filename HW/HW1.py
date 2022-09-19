@@ -129,7 +129,20 @@ def combination(str1):
 #iii. Count the number of lines in a text file.
 #iv. Count the frequency of words in a file.
 #Hint: first create a test.txt file and dump some textual data in it. Then test your code.
-
+#i 
+def read_lines(data, n): 
+    f = open(data,'r',encoding = 'utf-8')
+    head = [next(f) for x in range(n)]
+    return print(head)
+#ii
+max(s.split(), key=len)
+#iii
+with open("text_1.txt",'w',encoding = 'utf-8') as f:
+    print(len(f.readlines()))
+#iv
+d = collections.defaultdict(int)
+for c in str1:
+    d[c] += 1
 #%%
 #.8:
 #Answer all the class exercise questions and submit it (Check the instructions).

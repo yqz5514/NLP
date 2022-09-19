@@ -1,3 +1,4 @@
+#%%
 S1 = 'Asegmentofastringiscalledaslice.'
 print(len(S1))
 print ("*" * 10)
@@ -14,3 +15,5 @@ print(S1.startswith('a'))
 S3 = 'a' + S1[1:]
 print(S3)
 
+
+# %%

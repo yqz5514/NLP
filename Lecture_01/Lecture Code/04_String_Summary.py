@@ -1,3 +1,4 @@
+#%%
 S1= '1'
 S2 = '1abc'
 S3 = 'Acd'
@@ -18,3 +19,5 @@ print(S6.isspace())
 print(S3.istitle())
 print('.'.join(S3))
 print(S4.split(sep='.'))
+
+# %%
