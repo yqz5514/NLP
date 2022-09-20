@@ -1,12 +1,17 @@
+#%%
 from nltk.book import text1
 from nltk.book import text4
 from nltk.book import text6
 
+#%%
 print(text1.concordance("monstrous"))
+#%%
 print(text1.similar("monstrous"))
+# one way find similarity, detect freq of the target words's front waord or after words, then detact similiar word by locate the before/after word with high freq 
 print(text1.collocations())
 text4.dispersion_plot(["citizens", "democracy", "freedom", "duties", "America"])
 
+#%%
 print(text6.count("Very"))
 print(text6.count('the') / float(len(text6)) * 100)
 print(text4.count("bless"))

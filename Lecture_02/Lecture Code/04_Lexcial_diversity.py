@@ -1,3 +1,4 @@
+#%%
 from nltk.book import text1
 from nltk.book import text4
 
