@@ -250,6 +250,11 @@ print(20*'-' + 'End Q13' + 20*'-')
 # ===============================================================
 #%%
 import os
+
 os.getcwd()
 # %%
+sample_txt = open("C:\\Users\\Ann's XPS\\Desktop\\sample.txt", "w")
 #%%
+sample_txt.read(4)
+sample_txt.close
+# %%
