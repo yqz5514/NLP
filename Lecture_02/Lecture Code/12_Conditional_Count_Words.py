@@ -1,6 +1,7 @@
+#%%
 from nltk.corpus import brown
 import nltk
-
+#%%
 genre_word = [(genre, word)
            for genre in ['news', 'romance']
            for word in brown.words(categories=genre)]
