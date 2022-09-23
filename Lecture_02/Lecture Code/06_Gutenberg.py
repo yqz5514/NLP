@@ -1,11 +1,14 @@
+#%%
 from nltk.corpus import gutenberg
 import nltk
-
+#%%
 print(gutenberg.fileids())
 emma = gutenberg.words('austen-emma.txt')
 print(len(emma))
+#%%
 emma_Text = nltk.Text(gutenberg.words('austen-emma.txt'))
 emma_Text.concordance("surprize")
+#%%
 for fileid in gutenberg.fileids():
    num_chars = len(gutenberg.raw(fileid))
    num_words = len(gutenberg.words(fileid))

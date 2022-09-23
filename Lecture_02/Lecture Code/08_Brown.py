@@ -1,3 +1,4 @@
+#%%
 from nltk.corpus import brown
 import nltk
 print(brown.categories())
