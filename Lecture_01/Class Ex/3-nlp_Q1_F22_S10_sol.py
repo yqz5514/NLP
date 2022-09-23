@@ -8,10 +8,11 @@ l = data.split(sep='.')
 l_less_sent_10 = [x for x in l if len(x) > 15]
 # --------------------------------Q3-------------------------------------------------------------------------------------
 All_list_non_alphabet = [x for y in l for x in y if not x.isalpha()]
-Cnt =Counter(All_list_non_alphabet)
+Cnt = Counter(All_list_non_alphabet)
 print(Cnt.most_common(5))
 # --------------------------------Q4-------------------------------------------------------------------------------------
 count_comma = [x.count(Cnt.most_common(5)[1][0]) for x in l_less_sent_10 ]
+#
 count_quote = [x.count(Cnt.most_common(5)[2][0]) for x in l_less_sent_10 ]
 count_prime = [x.count(Cnt.most_common(5)[3][0]) for x in l_less_sent_10 ]
 count_dash = [x.count(Cnt.most_common(5)[4][0]) for x in l_less_sent_10 ]
