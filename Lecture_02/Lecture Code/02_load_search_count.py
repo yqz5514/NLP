@@ -2,6 +2,7 @@
 from nltk.book import *
 import nltk
 
+#%%
 print(text1.vocab())
 print(type(text1))
 print(len(text1))
