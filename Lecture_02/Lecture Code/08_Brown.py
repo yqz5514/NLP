@@ -17,7 +17,9 @@ print(brown.sents(categories=['news', 'editorial', 'reviews']))
 news_text = brown.words(categories='news')
 fdist = nltk.FreqDist(w.lower() for w in news_text)
 modals = ['can', 'could', 'may', 'might', 'must', 'will']
-#In NLP Modal Operators of Necessity relates to words, which form the rules in our lives (should, must, have to, etc.) Modal Operator of Possibility relates to words that denote that which is considered possible (can, cannot, etc.).
+#In NLP Modal Operators of Necessity relates to words, 
+#which form the rules in our lives (should, must, have to, etc.)
+# Modal Operator of Possibility relates to words that denote that which is considered possible (can, cannot, etc.).
 
 for m in modals:
     print(m + ':', fdist[m], end=' ')
