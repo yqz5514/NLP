@@ -1,3 +1,8 @@
+#%%
+from nltk.corpus import brown
+from nltk import FreqDist
+import nltk
+#%%
 # =================================================================
 # Class_Ex1:
 # Use NLTK Book fnd which the related Sense and Sensibility.
@@ -253,9 +258,20 @@ print(20*'-' + 'End Q14' + 20*'-')
 # Use sorted() and set() to get a sorted list of tags used in the Brown corpus, removing duplicates.
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q15' + 20*'-')
+#%%
+tags = brown.tagged_words()
+pos_tags = [val for key, val in tags]
 
+#%%
+print(len(pos_tags))
 
-
+#%%
+print(len(set(pos_tags)))
+#%%
+print(sorted(set(pos_tags)))
+#%%
+uniq_t = set(pos_tags)
+uniq_tag_frq = nltk.FreqDist(uniq_t)
 
 
 
@@ -265,14 +281,36 @@ print(20*'-' + 'End Q15' + 20*'-')
 # =================================================================
 # Class_Ex16:
 # Write programs to process the Brown Corpus and find answers to the following questions:
-# 1- Which nouns are more common in their plural form, rather than their singular form? (Only consider regular plurals, formed with the -s suffix.)
+# 1- Which nouns are more common in their plural form, rather than their singular form? 
+# (Only consider regular plurals, formed with the -s suffix.)
 # ----------------------------------------------------------------
+#%%
+from nltk.corpus import brown
+from nltk import FreqDist
+import nltk
+
 print(20*'-' + 'Begin Q16' + 20*'-')
+#%%
 
+bfq = nltk.ConditionalFreqDist(brown.tagged_words())
+#%%
+tags = brown.tagged_words()
+pos_tags = [val for key, val in tags]
 
+#this represents the tags in decreasing order of frequency.
 
+fd = nltk.FreqDist(pos_tags)
+common_tags = fd.most_common(20)
+print(common_tags)
+#%%
 
+conditions = bfq.conditions()
+for condition in conditions:
+	if bfq[condition]['NNS'] > bfq[condition]['NN']:
+		print(condition)
 
 print(20*'-' + 'End Q16' + 20*'-')
 
 
+
+# %%

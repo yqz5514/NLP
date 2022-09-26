@@ -4,7 +4,8 @@ from itertools import count
 from nltk import word_tokenize
 import nltk
 from nltk import Text
-
+from collections import Counter
+from nltk import FreqDist
 # E.1:
 #In part of this exercise, you will use nltk to explore the Moby Dick text.
 #i. Analyzing Moby Dick text. Load the moby.txt file into python environment. (Load the
