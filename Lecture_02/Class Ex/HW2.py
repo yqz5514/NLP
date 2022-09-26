@@ -125,6 +125,10 @@ unknown = [x for x in tokens if x not in words ]
 #unknown1 = tokens - words
 
 #iv. Fins a list of novel words.
+# novel words: new words
+# two ways to define it 
+# 1. wordnet novel
+# 2 freq : Freq_Dist.hapaxes() return item only once 
 #%%
 #print(nltk.corpus.novel.fileids())
 #v. Use the porter stemmer to stem all the items in novel words the go through the unknown
