@@ -1,5 +1,6 @@
 #%%
 from itertools import count
+#%%
 from nltk import word_tokenize
 import nltk
 from nltk import Text
@@ -89,23 +90,52 @@ print(tag_fq.most_common(5))
 #i. Write a function that scrape the web page and return the raw text file.
 
 #%%
-from urllib import request
 from bs4 import BeautifulSoup
 #%%
-url = "https://en.wikipedia.org/wiki/Benjamin_Franklin(HTML_parser)"
-html = request.urlopen(url)
-#raw = response.read().decode('utf8')
+import requests
+#%%
+url = "https://en.wikipedia.org/wiki/Benjamin_Franklin"
+html = requests.get(url)
+
+#%%
+html.status_code
+#%%
+html.encoding = 'utf-8' # Optional: requests infers this internally
+raw = html.text
+#%%
+print(raw[:75])
+
+#ii. Use BeautifulSoup to get text file and clean the html file.
 #%%
 
-raw = BeautifulSoup(html, 'html.parser').get_text()
+raw1 = BeautifulSoup(raw, 'html.parser').get_text()
 tokens = word_tokenize(raw); print(tokens)
-print(tokens[110:390])
-#ii. Use BeautifulSoup to get text file and clean the html file.
-
+#print(tokens[110:390])
 #iii. Write a function called unknown, which removes any items from this set that occur in the
 #Words Corpus (nltk.corpus.words).
+#%%
+words = nltk.corpus.words.words()
+#print(words[:20])
+#%%
+unknown = [x for x in tokens if x not in words ]
+
+#print(unknown[:10])
+
+
 #iv. Fins a list of novel words.
+#%%
+print(nltk.corpus.novel.fileids())
 #v. Use the porter stemmer to stem all the items in novel words the go through the unknown
 #function, saving the result as novel-stems.
-#vi. Find as many proper names from novel-stems as possible, saving the result as propernames.
+porter = nltk.PorterStemmer()
+#lancaster = nltk.LancasterStemmer()
+# the lancaster stemmer is significantly more aggressive than the porter stemmer
+print([porter.stem(t) for t in tokens])
 
+#vi. Find as many proper names from novel-stems as possible, saving the result as propernames.
+names = nltk.corpus.names
+
+# %%
+from nltk.corpus import brown
+print(brown.categories())
+# %%
