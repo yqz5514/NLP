@@ -140,3 +140,27 @@ names = nltk.corpus.names
 from nltk.corpus import brown
 print(brown.categories())
 # %%
+#E.3:
+#In part of this exercise, you will use the twitter data.
+#i. Load the data and view the first few sentences.
+tp = open('twt.txt', 'r', encoding='utf-8')
+raw = tp.read()
+l = raw.split(sep='.')
+print(raw.split(sep='.'))
+#ii. Split data into sentences using ”\n” as the delimiter.
+sent = raw.split(sep='\n')
+#iii. Tokenize sentences (split a sentence into a list of words). Convert all tokens into lower
+#case so that words which are capitalized
+#%%
+sents =  nltk.sent_tokenize(raw)
+print(sents[0])
+#iv. Split data into training and test sets.
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.05, random_state=0)
+#v. Count how many times each word appears in the data.
+
+
+# %%
