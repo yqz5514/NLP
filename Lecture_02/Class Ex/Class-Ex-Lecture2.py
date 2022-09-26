@@ -10,6 +10,8 @@ import nltk
 # Elinor, Marianne, Edward, and Willoughby. What can you observe about the different
 # roles played by the males and females in this novel? Can you identify the couples?
 # Explain the result of plot in a couple of sentences.
+# text2 is Sense and sensibility text given by NLTK
+# use dispersion_plot() for your reference, NO need to include graph.
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q1' + 20*'-')
 
@@ -239,6 +241,22 @@ print(20*'-' + 'End Q13' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q14' + 20*'-')
 
+#%%
+from nltk.corpus import gutenberg
+from nltk.corpus import brown
+import nltk
+
+brown_tagged_sents = brown.tagged_sents(categories='news')
+brown_sents = brown.sents(categories='news')
+size = int(len(brown_tagged_sents) * 0.7)
+train_sents = brown_tagged_sents[:size]
+test_sents = brown_tagged_sents[size:]
+
+bigram_tagger = nltk.BigramTagger(train_sents)
+bigram_tagger.evaluate(train_sents)
+bigram_tagger.evaluate(test_sents)
+
+# the performance drops off considerably because it relies on the stastical probablity that word is a particular part of speech based on the first word in a bigram. So when it gets to a new word that it hasn't seen in a bigram before it has nothing to go on and the word is returned as unknown. The accuracy plummets.
 
 
 
@@ -273,7 +291,12 @@ print(sorted(set(pos_tags)))
 uniq_t = set(pos_tags)
 uniq_tag_frq = nltk.FreqDist(uniq_t)
 
-
+#%%
+tags = brown.tagged_words()
+sorted_tags = sorted(tags)
+unique_tags = set(sorted_tags)
+vals =[val for key, val in unique_tags]	
+print(sorted(set(vals)))
 
 
 print(20*'-' + 'End Q15' + 20*'-')
