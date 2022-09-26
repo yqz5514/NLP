@@ -126,7 +126,7 @@ unknown = [x for x in tokens if x not in words ]
 
 #iv. Fins a list of novel words.
 #%%
-print(nltk.corpus.novel.fileids())
+#print(nltk.corpus.novel.fileids())
 #v. Use the porter stemmer to stem all the items in novel words the go through the unknown
 #function, saving the result as novel-stems.
 porter = nltk.PorterStemmer()
