@@ -110,7 +110,7 @@ print(raw[:75])
 #%%
 
 raw1 = BeautifulSoup(raw, 'html.parser').get_text()
-tokens = word_tokenize(raw); print(tokens)
+tokens = word_tokenize(raw) #print(tokens)
 #print(tokens[110:390])
 #iii. Write a function called unknown, which removes any items from this set that occur in the
 #Words Corpus (nltk.corpus.words).
@@ -120,8 +120,9 @@ words = nltk.corpus.words.words()
 #%%
 unknown = [x for x in tokens if x not in words ]
 
+#%%
 #print(unknown[:10])
-
+#unknown1 = tokens - words
 
 #iv. Fins a list of novel words.
 #%%

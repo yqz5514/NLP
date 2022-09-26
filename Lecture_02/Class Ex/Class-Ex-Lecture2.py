@@ -2,6 +2,19 @@
 from nltk.corpus import brown
 from nltk import FreqDist
 import nltk
+from nltk.corpus import stopwords
+from nltk import word_tokenize
+import nltk
+from nltk import Text
+from collections import Counter
+from nltk import FreqDist
+from nltk.corpus import wordnet as wn
+from nltk.corpus import cmudict
+from nltk.corpus import state_union
+from nltk.book import *
+from urllib import request
+
+
 #%%
 # =================================================================
 # Class_Ex1:
@@ -14,9 +27,17 @@ import nltk
 # use dispersion_plot() for your reference, NO need to include graph.
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q1' + 20*'-')
+#%%
 
-
-
+from nltk.corpus import gutenberg
+from nltk.draw.dispersion import dispersion_plot
+words = ['Elinor', 'Marianne', 'Edward', 'Willoughby']
+dispersion_plot(gutenberg.words("austen-sense.txt"), words)
+#nltk.Text(gutenberg.words('austen-emma.txt')).dispersion_plot(words)
+'''
+b.The chracters Elinor(f) and Marianne(f) comes constantly(uniformly) throughout the novel but Edward(m)
+and Willoughby(m) appear almost seperately.Marianne and Willoughby appear as couple.
+'''
 
 
 
@@ -48,11 +69,22 @@ print(20*'-' + 'End Q2' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q3' + 20*'-')
 
+#%%
+freqDistText5 = FreqDist(text5)
+text5FourLetterWords = sorted(set([w for w in text5 if w.isalpha() and len(w) == 4]))
+print(text5FourLetterWords)
+#print(freqDistText5)
+#%%
+for sample in [w for w in freqDistText5]:
+    if sample not in text5FourLetterWords:
+        freqDistText5.pop(sample)
+#print(freqDistText5)
+freqDistText5.plot(50)
 
+#%%
+print(sorted(freqDistText5, reverse=True))
 
-
-
-
+#%%
 
 
 print(20*'-' + 'End Q3' + 20*'-')
@@ -67,6 +99,15 @@ print(20*'-' + 'End Q3' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q4' + 20*'-')
 
+# Ending in ize
+print([w for w in text6 if w.endswith('ize')])
+# Containing the letter z
+print([w for w in text6 if 'z' in w])
+# Containing the sequence of letters pt
+print([w for w in text6 if 'pt' in w])
+# Having all lowercase letters except for an initial capital (i.e., titlecase)
+print([w for w in text6 if w.istitle()])
+
 
 
 
@@ -78,14 +119,18 @@ print(20*'-' + 'Begin Q4' + 20*'-')
 print(20*'-' + 'End Q4' + 20*'-')
 # =================================================================
 # Class_Ex5:
-#  Read in the texts of the State of the Union addresses, using the state_union corpus reader.
-#  Count occurrences of men, women, and people in each document.
-#  What has happened to the usage of these words over time?
+# Read in the texts of the State of the Union addresses, using the state_union corpus reader.
+# Count occurrences  of men, women, and people in each document.
+# What has happened to the usage of these words over time?
 # Since there would be a lot of document use every couple of years.
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q5' + 20*'-')
 
-
+#%%
+print(state_union.fileids())
+#cfd for inaugral address speeches for each president showing count of words american and citizen each speech
+cfd = nltk.ConditionalFreqDist((target,fileid[:4])for fileid in state_union.fileids() for w in state_union.words(fileid) for target in  ['men','women', 'people'] if w.lower().startswith(target))
+cfd.plot()
 
 
 
@@ -98,13 +143,21 @@ print(20*'-' + 'End Q5' + 20*'-')
 # =================================================================
 # Class_Ex6:
 # The CMU Pronouncing Dictionary contains multiple pronunciations for certain words.
-# How many distinct words does it contain? What fraction of words in this dictionary have more than one possible pronunciation?
+# How many distinct words does it contain? 
+# What fraction of words in this dictionary have more than one possible pronunciation?
 #
 #
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q6' + 20*'-')
+#%%
+words = [word for word,pron in cmudict.entries() ]
+wordset=set(words)
 
-
+cmu=cmudict.dict()
+print(len(words))
+print(len(wordset))
+more_than_one_pron=[word for word in wordset if len(cmu.get(word))>1]
+print(len(more_than_one_pron)/len(wordset)*100,"% words have more than one pronounciation")
 
 
 
@@ -119,13 +172,11 @@ print(20*'-' + 'End Q6' + 20*'-')
 #
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q7' + 20*'-')
-
-
-
-
-
-
-
+#%%
+no_hyp_nouns=[noun for noun in wn.all_synsets('n') if len(noun.hyponyms())==0]
+all_noun_words=[noun for noun in wn.all_synsets('n')]
+print("Percentage of noun having no hyponyms: ",len(no_hyp_nouns)/len(all_noun_words)*100)
+#weird: had to define all_nouns twice as on 2 operation it was blank, mutability maybe
 
 print(20*'-' + 'End Q7' + 20*'-')
 # =================================================================
@@ -134,13 +185,11 @@ print(20*'-' + 'End Q7' + 20*'-')
 # USe at least 2 different method.
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q8' + 20*'-')
-
-
-
-
-
-
-
+#%%
+all_unique_words_brown=set(brown.words())
+brown_fd=nltk.FreqDist(brown.words())
+atleast_3times=[word for word in all_unique_words_brown if brown_fd[word]>2]
+print(atleast_3times)
 
 
 print(20*'-' + 'End Q8' + 20*'-')
@@ -152,14 +201,18 @@ print(20*'-' + 'End Q8' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q9' + 20*'-')
 
+#%%
+most_freq_50_fd=nltk.FreqDist(brown.words(categories='news'))
+#fd that includes stop words
+print(most_freq_50_fd.most_common(50))
+words=[word for word in most_freq_50_fd]
+for word in words:
+    if word in stopwords.words('english') or not word.isalpha():
+        most_freq_50_fd.pop(word)
+#fd that excludes stop words
+print(most_freq_50_fd.most_common(50))
 
-
-
-
-
-
-
-
+######??????##################
 
 
 print(20*'-' + 'End Q9' + 20*'-')
@@ -171,13 +224,16 @@ print(20*'-' + 'End Q9' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q10' + 20*'-')
 
-
-
-
-
-
-
-
+#%%
+cfd = nltk.ConditionalFreqDist((genre,word)for genre in brown.categories() for word in brown.words(categories=genre))
+# check distribution of "love","hate","death","life","marriage","work","children"
+general_words = ["love", "hate", "death", "life", "marriage", "work", "children","magic"]
+#conditional frequency distributions with event_words
+cfd.tabulate(conditions=brown.categories(), samples=general_words)
+#conclusion: belles_letters contains alot of refrences to life and work
+#learned category has a lot of refrences to work
+#lore contains a lot of refrences to life
+# religion contains most refrences to life death work and magic
 
 print(20*'-' + 'End Q10' + 20*'-')
 # =================================================================
@@ -189,10 +245,19 @@ print(20*'-' + 'End Q10' + 20*'-')
 print(20*'-' + 'Begin Q11' + 20*'-')
 
 
+#%%
+from urllib import request
+from bs4 import BeautifulSoup
 
+def utility(url):
+	link = url
+	html = request.urlopen(url).read().decode('utf8')
+	raw = BeautifulSoup(html).get_text()
+	print(raw)
 
+utility('http://nltk.org')
 
-
+#%%
 
 
 print(20*'-' + 'End Q11' + 20*'-')
@@ -206,14 +271,25 @@ print(20*'-' + 'End Q11' + 20*'-')
 # Note Use: Gutenberg('bryant-stories.txt')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q12' + 20*'-')
+#%%
+import nltk
+from nltk import word_tokenize
 
+#	reads in a text
+f = open('corpus.txt')
+raw = f.read()
 
+# tokenizes that text
+tokens = word_tokenize(raw)
 
+# pulls out all the words that start with wh. and prints it out.
+wh_words = [word for word in tokens if word.startswith('wh')]
 
+# sorts the list and prints it
+wh_words.sort()
+print(wh_words)
 
-
-
-
+#%%
 
 
 print(20*'-' + 'End Q12' + 20*'-')
@@ -224,11 +300,27 @@ print(20*'-' + 'End Q12' + 20*'-')
 # Note use the following site https://darksky.net/forecast/40.7127,-74.0059/us12/en
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q13' + 20*'-')
+#%%
+import requests
+from bs4 import BeautifulSoup
 
+url = 'https://darksky.net/forecast/40.7127,-74.0059/us12/en'
 
+html = requests.get(url)
+html.encoding = 'utf-8' # Optional: requests infers this internally
+raw = html.text
+raw1 = BeautifulSoup(raw, 'html.parser').get_text()
+#tokens = word_tokenize(raw) #print(tokens)
+today = raw1.find(class_="info city-fcast-text")
+print(today.get_text())
+#%%
 
-
-
+# scrapes the webpage and cleans out the html
+url = "http://www.accuweather.com/en/us/charlottesville-va/22902/weather-forecast/331243"
+html = request.urlopen(url).read().decode('utf8')
+soup = BeautifulSoup(html)
+today = soup.find(class_="info city-fcast-text")
+print(today.get_text())
 
 
 
