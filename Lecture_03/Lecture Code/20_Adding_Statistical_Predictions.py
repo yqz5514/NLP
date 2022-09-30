@@ -7,6 +7,7 @@ matcher = Matcher(nlp.vocab)
 
 matcher.add("CAR", [[{"LOWER": "golden"}, {"LOWER": "car"}]])
 doc = nlp("I have a Golden Car")
+
 for match_id, start, end in matcher(doc):
     span = doc[start:end]
     print("Matched span:", span.text)
@@ -15,3 +16,5 @@ for match_id, start, end in matcher(doc):
     print("Root head token:", span.root.head.text)
     # Get the previous token and its POS tag
     print("Previous token:", doc[start - 1].text, doc[start - 1].pos_)
+
+# %%

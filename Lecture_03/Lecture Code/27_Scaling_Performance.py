@@ -7,6 +7,7 @@ nlp = spacy.load("en_core_web_sm")
 # doc = nlp("Hello world")
 # doc = nlp.make_doc("Hello world!")
 
+#%%
 text = 'I love performance'
 with nlp.disable_pipes("tagger", "parser"):
     doc = nlp(text)
