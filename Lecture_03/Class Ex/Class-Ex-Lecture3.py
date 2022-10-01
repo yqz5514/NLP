@@ -5,45 +5,33 @@
 # Process a text : This is a simple example to initiate spacy
 # Print out the document text from the doc object.
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q1' + 20*'-')
+#%%
+from spacy.lang.en import English
+
+#%%
+nlp = English()
+doc = nlp("Seventeen has 13 members.")
+print(doc.text)
 
 
-
-
-
-
-
-print(20*'-' + 'End Q1' + 20*'-')
 # =================================================================
 # Class_Ex2:
 # Solve Ex1 but this time use German Language.
 # Grab a sentence from german text from any website.
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q2' + 20*'-')
+#%%
+from spacy.lang.de import German
+#%%
+nlp = German()
+doc = nlp("Seventeen has 13 members.")
+print(doc.text)
 
-
-
-
-
-
-
-
-print(20*'-' + 'End Q2' + 20*'-')
 # =================================================================
 # Class_Ex3:
 # Tokenize a sentence using sapaCy.
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q3' + 20*'-')
+#%%
 
-
-
-
-
-
-
-
-
-print(20*'-' + 'End Q3' + 20*'-')
 # =================================================================
 # Class_Ex4:
 # Use the following sentence as a sample text. and Answer the following questions.
@@ -53,18 +41,8 @@ print(20*'-' + 'End Q3' + 20*'-')
 # 3- How many url is in the text.
 
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q4' + 20*'-')
+#%%
 
-
-
-
-
-
-
-
-
-
-print(20*'-' + 'End Q4' + 20*'-')
 # =================================================================
 # Class_Ex5:
 # Load small web english model into spaCy.
