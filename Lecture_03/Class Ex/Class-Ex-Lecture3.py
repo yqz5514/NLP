@@ -31,7 +31,9 @@ print(doc.text)
 # Tokenize a sentence using sapaCy.
 # ----------------------------------------------------------------
 #%%
-
+doc = nlp("Seventeen has 13 members.")
+token = [t for t in doc]
+print(token)
 # =================================================================
 # Class_Ex4:
 # Use the following sentence as a sample text. and Answer the following questions.
@@ -42,6 +44,11 @@ print(doc.text)
 
 # ----------------------------------------------------------------
 #%%
+import spacy
+nlp = spacy.load("en_core_web_sm")
+
+#%%
+doc = ("In 2020, more than 15% of people in World got sick from a pandemic ( www.google.com ). Now it is less than 1% are. Reference ( www.yahoo.com )")
 
 # =================================================================
 # Class_Ex5:
@@ -51,8 +58,7 @@ print(doc.text)
 # 1- Get the token text, part-of-speech tag and dependency label.
 # 2- Print them in a tabular format.
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q5' + 20*'-')
-
+#%%
 
 
 
@@ -100,16 +106,12 @@ print(20*'-' + 'End Q7' + 20*'-')
 # Text : I have a cat.
 # Next use the id and and find the string.
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q8' + 20*'-')
+#%%
+cat_hashid = nlp.vocab.strings['cat']
+cat_text = nlp.vocab.strings[cat_hashid]
 
 
 
-
-
-
-
-
-print(20*'-' + 'End Q8' + 20*'-')
 # =================================================================
 # Class_Ex9:
 # Create a Doc object for the following sentence
@@ -117,7 +119,7 @@ print(20*'-' + 'End Q8' + 20*'-')
 # Use the methods like text, token,... on the Doc and check the functionality.
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q9' + 20*'-')
-
+#%%
 
 
 
@@ -173,15 +175,22 @@ print(20*'-' + 'End Q11' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q12' + 20*'-')
 
+#%%
+from spacy.tokens import Doc
+
+doc = nlp("Seventeen has 13 members.")
+
+# Register custom attribute on Doc class
+get_reversed = lambda doc: doc.text[::-1]
+Doc.set_extension("reversed", getter=get_reversed)
+# Compute value of extension attribute with getter
+doc._.reversed
+# 'eulb si kroY weN revo yks ehT'
 
 
 
 
-
-
-
-
-
+#%%
 print(20*'-' + 'End Q12' + 20*'-')
 # =================================================================
 # Class_Ex13:
@@ -190,13 +199,26 @@ print(20*'-' + 'End Q12' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q13' + 20*'-')
 
+#%%
+import json
+
+f = open ('tweets.json', "r")
+
+#%%
+# Reading from file
+data = json.loads(f.read())
+new_data = ' '.join(data) # convert a list of str to a single str
+#%%
+print(new_data)
+#%%
+doc = nlp(new_data)
+token = [t for t in doc]
+for ent in doc.ents:
+    print(ent.text, ent.label_)
 
 
 
-
-
-
-
+#%%
 
 print(20*'-' + 'End Q13' + 20*'-')
 # =================================================================
@@ -208,9 +230,11 @@ print(20*'-' + 'End Q13' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q14' + 20*'-')
 
+#%%
 
-
-
+with nlp.disable_pipes("tagger", "parser"):
+    doc = nlp(text)
+    print(doc.text)
 
 
 
