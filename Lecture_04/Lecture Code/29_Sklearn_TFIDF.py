@@ -6,6 +6,9 @@ corpus = [
      'Is this the first document?',
  ]
 vectorizer = TfidfVectorizer()
-X = vectorizer.fit_transform(corpus)
+X = vectorizer.fit_transform(corpus)# TF*IDF
 print(vectorizer.get_feature_names())
 print(X.shape)
+# embedding
+# number of features 9
+# what is meaning about TFIDF??????

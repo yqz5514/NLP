@@ -1,6 +1,8 @@
+#%%
 import numpy as np
 import pandas as pd
 sentence ='Thomas Jefferson began building Monticello at the age of 26.'
+#%%
 token_sequence = str.split(sentence)
 vocab = sorted(set(token_sequence))
 print(', '.join(vocab))
@@ -13,3 +15,8 @@ for i, word in enumerate(token_sequence):
 print(onehot_vectors)
 df = pd.DataFrame(onehot_vectors, columns=vocab)
 print(df)
+# Pros: no information is lost with this vector representation of words and tabular representation of documents
+
+# problem with this : too many columns
+# %%
+# embeding : every words need to be coded/numerical, vectorlization

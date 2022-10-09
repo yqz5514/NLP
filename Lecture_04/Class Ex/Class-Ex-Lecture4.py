@@ -3,30 +3,14 @@
 # Write a function that checks a string contains only a certain set of characters
 # (all chars lower and upper case with all digits).
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q1' + 20*'-')
-
-
-
-
-
-
-
-
-
-
-print(20*'-' + 'End Q1' + 20*'-')
+#%%
 
 # =================================================================
 # Class_Ex2:
 # Write a function that matches a string in which a followed by zero or more b's.
 # Sample String 'ac', 'abc', abbc'
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q2' + 20*'-')
-
-
-
-
-
+#%%
 
 
 
@@ -239,3 +223,33 @@ print(20*'-' + 'End Q12' + 20*'-')
 
 
 
+#%%
+#E.1: In part of this exercise, you will use regular expression. 
+# i. Load Email.txt dataset. 
+#%%
+with open('email.txt', 'r') as f:
+    text = f.read()
+text[5]
+# ii. Find all email addresses in the text file. 
+#%%
+
+# iii. Verify the results. An email address usually follows these rules: 
+# • Upper or lower case letters or digits • Starting with a letter 
+# • Followed by a the at sign symbol. • Followed by a string of alphanumeric characters. No spaces are allowed 
+# • Followed by a the dot “.” symbol • Followed by a domain extension(e.g.,“com”, “edu”, “net”.) 
+
+#%%
+# E.2: In part of this exercise, you will use regular expression. 
+# i. Load war and peace by By Leo Tolstoy. 
+# ii. Check line by line and find any proper name ending with ”..ski” then print them all. 
+# iii. Put all the names into a dictionary and sort them. 
+#%%
+# E.3: In part of this exercise, you will use regular expression. 
+# i. Write a program with regular expression that joins numbers if there is a space between them 
+# (e.g., ”12 0 mph is a very high speed in the 6 6 interstate.” to ”120 mph is a very high speed in the 66 interstate.” ) 
+# ii. Write a program with regular expression that find the content in the parenthesise and replace it with ”(xxxxx)” 
+# iii. Write a program that find any word ends with ”ly”. 
+# iv. Write a program that finds all the quotes in the text and prints the strings in between. 
+# v. Write a program that finds all words which has 3,4,5 charters in the text. v. Write a program that replaces a comma with a hyphen. 
+# vi. Write a program that extract year, month and date from any url which has date init which follows by forward slashes. ”
+# https://www.yahoo.com/news/football/wew/2021/09/02/odellfamer-rrrr-on-one-tr-littleball–norman-stupid-author/”

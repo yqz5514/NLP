@@ -1,3 +1,4 @@
+#%%
 import re
 def stem(phrase):
     return ' '.join([re.findall('^(.*ss|.*?)(s)?$', word)

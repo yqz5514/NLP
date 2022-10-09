@@ -1,3 +1,4 @@
+#%%
 num_rows = 3000 * 3500 * 15
 print('{} Number of Rows'.format(num_rows))
 num_bytes = num_rows * 1000000

@@ -1,3 +1,4 @@
+#%%
 import nltk
 from collections import Counter
 from nltk.tokenize import TreebankWordTokenizer
@@ -10,8 +11,11 @@ tokens = tokenizer.tokenize(kite_text.lower())
 token_counts = Counter(tokens)
 print(token_counts)
 print(20 *'-')
+#%%
 nltk.download('stopwords', quiet=True)
 stopwords = nltk.corpus.stopwords.words('english')
 tokens = [x for x in tokens if x not in stopwords]
 kite_counts = Counter(tokens)
 print(kite_counts)
+
+# %%
