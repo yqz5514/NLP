@@ -229,9 +229,15 @@ print(20*'-' + 'End Q12' + 20*'-')
 #%%
 with open('email.txt', 'r') as f:
     text = f.read()
+
 text[5]
 # ii. Find all email addresses in the text file. 
 #%%
+import re
+pattern = re.compile(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')
+matches = pattern.finditer(text)
+for m in matches:
+    print(m.groups())
 
 # iii. Verify the results. An email address usually follows these rules: 
 # • Upper or lower case letters or digits • Starting with a letter 
@@ -241,8 +247,16 @@ text[5]
 #%%
 # E.2: In part of this exercise, you will use regular expression. 
 # i. Load war and peace by By Leo Tolstoy. 
+#%%
+with open('war.txt', 'r') as f:
+    text = f.read()
+text[5]
 # ii. Check line by line and find any proper name ending with ”..ski” then print them all. 
+
+#%%
 # iii. Put all the names into a dictionary and sort them. 
+from collections import OrderedDict, Counter
+
 #%%
 # E.3: In part of this exercise, you will use regular expression. 
 # i. Write a program with regular expression that joins numbers if there is a space between them 
