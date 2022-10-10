@@ -10,3 +10,4 @@ from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS as sklearn_stop_w
 print(len(sklearn_stop_words))
 print(len(set(stop_words).union(sklearn_stop_words)))
 print(len(set(stop_words).intersection(sklearn_stop_words)))
+# %%

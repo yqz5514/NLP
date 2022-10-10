@@ -132,17 +132,72 @@ print(20*'-' + 'Begin Q7' + 20*'-')
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://darksky.net/forecast/40.7127,-74.0059/us12/en'
+url = 'https://en.wikipedia.org/wiki/Natural_language_processing'
 
 html = requests.get(url)
 html.encoding = 'utf-8' # Optional: requests infers this internally
 raw = html.text
 raw1 = BeautifulSoup(raw, 'html.parser').get_text()
-#tokens = word_tokenize(raw) #print(tokens)
 
+#%%
+import string
+exclude = set(string.punctuation)
+raw2 = ''.join(ch for ch in raw1 if ch not in exclude)
+#print(raw2)
+#tokens = word_tokenize(raw) 
+# #print(tokens)
+#print(raw1[0:9])
+#%%
+from nltk.tokenize import TreebankWordTokenizer# based on wall street journal
+tokenizer = TreebankWordTokenizer()
+token_raw = tokenizer.tokenize(raw2)
 
+#print(tokenizer.tokenize(raw1))
+#%%
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS as sklearn_stop_words
+clean = [x for x in token_raw if x not in sklearn_stop_words]
 
+#%%
+from collections import Counter
+freq = Counter(clean)
+#%%
+print(freq.most_common(5))
+#%%
+print(len(raw1))
+#%%
+#TF
+from nltk.tokenize import TreebankWordTokenizer
+from collections import Counter
+sentence = "The faster Harry got to the store, the faster Harry " \
+           "the faster, would get home."
+tokenizer = TreebankWordTokenizer()
+tokens = tokenizer.tokenize(sentence.lower())
+bag_of_words = Counter(tokens)
+print(bag_of_words.most_common(4))
 
+times_harry_appears = bag_of_words['harry']
+num_unique_words = len(bag_of_words)
+tf = times_harry_appears / num_unique_words; print(tf)
+#%%
+import nltk
+from collections import Counter
+from nltk.tokenize import TreebankWordTokenizer
+
+with open('kite.txt','r') as f:
+    kite_text = f.read()
+
+tokenizer = TreebankWordTokenizer()
+tokens = tokenizer.tokenize(kite_text.lower())
+token_counts = Counter(tokens)
+print(token_counts)
+print(20 *'-')
+#%%
+nltk.download('stopwords', quiet=True)
+stopwords = nltk.corpus.stopwords.words('english')
+tokens = [x for x in tokens if x not in stopwords]
+kite_counts = Counter(tokens)
+print(kite_counts)
+#%%
 print(20*'-' + 'End Q7' + 20*'-')
 # =================================================================
 # Class_Ex8:
