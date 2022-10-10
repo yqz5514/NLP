@@ -17,4 +17,4 @@ size = int(len(brown_tagged_sents) * 0.9)
 train_sents = brown_tagged_sents[:size]
 test_sents = brown_tagged_sents[size:]
 unigram_tagger = nltk.UnigramTagger(train_sents)
-print(unigram_tagger.evaluate(test_sents))
+print(unigram_tagger.evaluate(test_sents))  

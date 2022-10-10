@@ -15,3 +15,5 @@ cnt = Counter(list)
 od = OrderedDict(cnt.most_common())
 for key, value in od.items():
     print(key, value)
+    
+    

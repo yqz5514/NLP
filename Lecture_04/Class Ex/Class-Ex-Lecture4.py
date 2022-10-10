@@ -4,7 +4,11 @@
 # (all chars lower and upper case with all digits).
 # ----------------------------------------------------------------
 #%%
-
+import re
+def is_allowed_specific_char(string):
+    charRe = re.compile(r'[^a-zA-Z0-9]')
+    string = charRe.search(string)
+    return not bool(string)
 # =================================================================
 # Class_Ex2:
 # Write a function that matches a string in which a followed by zero or more b's.
@@ -12,7 +16,13 @@
 # ----------------------------------------------------------------
 #%%
 
-
+import re
+def text_match(text):
+        patterns = '^a(b*)$'
+        if re.search(patterns,  text):
+                return 'Found a match!'
+        else:
+                return('Not matched!')
 
 
 
@@ -23,8 +33,12 @@ print(20*'-' + 'End Q2' + 20*'-')
 
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q3' + 20*'-')
-
-
+# find numbers between length 1 to 3
+import re
+results = re.finditer(r"([0-9]{1,3})", "Exercises number 1, 12, 13, and 345 are important")
+print("Number of length 1 to 3")
+for n in results:
+     print(n.group(0))
 
 
 
@@ -40,7 +54,13 @@ print(20*'-' + 'End Q3' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q4' + 20*'-')
 
-
+import re
+text = 'Python exercises, PHP exercises, C# exercises'
+pattern = 'exercises'
+for match in re.finditer(pattern, text):
+    s = match.start()
+    e = match.end()
+    print('Found "%s" at %d:%d' % (text[s:e], s, e))
 
 
 
@@ -57,7 +77,16 @@ print(20*'-' + 'End Q4' + 20*'-')
 print(20*'-' + 'Begin Q5' + 20*'-')
 
 
+import re
 
+
+words = ["Cython CHP", "Java JavaScript", "PERL S+"]
+
+for w in words:
+        m = re.match("(C\w+)\W(C\w+)", w)
+        # Check for success
+        if m:
+            print(m.groups())
 
 
 
@@ -73,7 +102,11 @@ print(20*'-' + 'End Q5' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q6' + 20*'-')
 
-
+#%%
+import re
+text1 = '2343#$% @@\ pythonregex 3949*(**)'
+pattern = re.compile('[\W_]+')
+print(pattern.sub('', text1))
 
 
 
@@ -93,10 +126,19 @@ print(20*'-' + 'End Q6' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q7' + 20*'-')
 
+#%%
 
 
+import requests
+from bs4 import BeautifulSoup
 
+url = 'https://darksky.net/forecast/40.7127,-74.0059/us12/en'
 
+html = requests.get(url)
+html.encoding = 'utf-8' # Optional: requests infers this internally
+raw = html.text
+raw1 = BeautifulSoup(raw, 'html.parser').get_text()
+#tokens = word_tokenize(raw) #print(tokens)
 
 
 
@@ -110,7 +152,26 @@ print(20*'-' + 'End Q7' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q8' + 20*'-')
 
+from nltk.corpus import brown
+import nltk
 
+#%%
+brown_tagged_sents = brown.tagged_sents(categories='news')
+brown_sents = brown.sents(categories='news')
+unigram_tagger = nltk.UnigramTagger(brown_tagged_sents)
+print(unigram_tagger.tag(brown_sents[2007]))
+#the UnigramTagger finds the most likely tag for each word in a training corpus, 
+# and then uses that information to assign tags to new tokens.
+
+#%%
+print(unigram_tagger.evaluate(brown_tagged_sents))
+#Score the accuracy of the tagger against the gold standard.
+#%%
+size = int(len(brown_tagged_sents) * 0.9)
+train_sents = brown_tagged_sents[:size]
+test_sents = brown_tagged_sents[size:]
+unigram_tagger = nltk.UnigramTagger(train_sents)
+print(unigram_tagger.evaluate(test_sents))  
 
 
 
@@ -133,6 +194,16 @@ print(20*'-' + 'End Q8' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q9' + 20*'-')
 
+from nltk.tokenize import TreebankWordTokenizer
+from collections import Counter
+sentence = "The faster Harry got to the store, the faster Harry " \
+           "the faster, would get home."
+tokenizer = TreebankWordTokenizer()
+tokens = tokenizer.tokenize(sentence.lower())
+print(tokens)
+
+bag_of_words = Counter(tokens)
+print(bag_of_words)
 
 
 
@@ -158,8 +229,30 @@ print(20*'-' + 'End Q9' + 20*'-')
 # ----------------------------------------------------------------
 print(20*'-' + 'Begin Q10' + 20*'-')
 
+from nltk.tokenize import TreebankWordTokenizer
+from collections import Counter
+sentence = "The faster Harry got to the store, the faster Harry " \
+           "the faster, would get home."
+tokenizer = TreebankWordTokenizer()
+tokens = tokenizer.tokenize(sentence.lower())
+print(tokens)
+
+bag_of_words = Counter(tokens)
+print(bag_of_words)
 
 
+from nltk.tokenize import TreebankWordTokenizer
+from collections import Counter
+sentence = "The faster Harry got to the store, the faster Harry " \
+           "the faster, would get home."
+tokenizer = TreebankWordTokenizer()
+tokens = tokenizer.tokenize(sentence.lower())
+bag_of_words = Counter(tokens)
+print(bag_of_words.most_common(4))
+
+times_harry_appears = bag_of_words['harry']
+num_unique_words = len(bag_of_words)
+tf = times_harry_appears / num_unique_words; print(tf)
 
 
 
@@ -252,14 +345,45 @@ with open('war.txt', 'r') as f:
     text = f.read()
 text[5]
 # ii. Check line by line and find any proper name ending with ”..ski” then print them all. 
+#%%
+import re
+pattern = re.compile(r'[A-Z]([a-z]+|\.)ski')#([a-z]+|\.)
+ms = pattern.finditer(text)
+list = []
+for match in ms:
+    value = match.group()
+
+    list.append(value)
+print(list)
+#%%
+sum(1 for _ in re.finditer(pattern,text))#'[A-Z]{1}\w*ski'#511
+#[A-Z]([a-z]+|\.)ski 510
 
 #%%
 # iii. Put all the names into a dictionary and sort them. 
-from collections import OrderedDict, Counter
+from collections import OrderedDict, Counter, defaultdict
+
+#%%
+count = Counter(list)
+#%%
+dict2 = OrderedDict(count)
+print(dict2)
+#%%
+type(count)
+#type(dict)
+#%%
+dict1 = {}
+dict1.update(count)
+print(dict1)
+#%%
+type(dict1)
+#%%
+print({k: v for k, v in sorted(dict1.items(), key=lambda item: item[1], reverse = True)})
 
 #%%
 # E.3: In part of this exercise, you will use regular expression. 
 # i. Write a program with regular expression that joins numbers if there is a space between them 
+#%%
 # (e.g., ”12 0 mph is a very high speed in the 6 6 interstate.” to ”120 mph is a very high speed in the 66 interstate.” ) 
 # ii. Write a program with regular expression that find the content in the parenthesise and replace it with ”(xxxxx)” 
 # iii. Write a program that find any word ends with ”ly”. 
