@@ -1,3 +1,4 @@
+#%%
 from sklearn.feature_extraction.text import TfidfVectorizer
 corpus = [
      'This is the first document.',
@@ -7,8 +8,16 @@ corpus = [
  ]
 vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(corpus)# TF*IDF
-print(vectorizer.get_feature_names())
-print(X.shape)
+#print(vectorizer.get_feature_names())
+#print(X.shape)
 # embedding
 # number of features 9
 # what is meaning about TFIDF??????
+
+# %%
+vectorizer.get_feature_names()
+#%%
+print(X)
+# %%
+type(vectorizer.get_feature_names())
+# %%
