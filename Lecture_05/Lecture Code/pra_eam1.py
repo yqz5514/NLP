@@ -238,3 +238,13 @@ metrics.accuracy_score(y_test, y_pred_class)
 #FP TN
 # p = tp/tp+fp
 # r = tp/tp+fn
+def simple_preprocessing(text):
+    heading = re.findall("^.+(?=\n)", text) # Extract the first line as heading
+    text = re.sub(heading[0], '', text) # Remove the heading
+    text = re.sub('\n', ' ', text) # Replace newline character with whitespace
+    text = re.sub('[$(.%),;!?]+','', text) # Remove common punctuations
+    text = text.strip() # Remove leading and training whitespaces
+    return (heading[0], text)
+
+news_and_heading = [simple_preprocessing(txt.lower()) for txt in df['news']]
+
