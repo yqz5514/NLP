@@ -1,5 +1,8 @@
+#%%
 import numpy as np
 import matplotlib.pyplot as plt
+plt.style.use('seaborn-darkgrid')
+
 #  %%-----------------------------------------
 p = np.linspace(start=-8, stop=8, num=1000)
 #  %%-----------------------------------------
@@ -11,6 +14,7 @@ def purelin(n):
 
 def logsig(n):
     return  1/(1 + np.exp(-n))
+#A transformer model is a neural network that learns context and thus meaning by tracking relationships in sequential data like the words in this sentence.
 
 #  %%-----------------------------------------
 t_poslin = poslin(p)
@@ -30,3 +34,5 @@ plt.title('Transfer Function')
 plt.show()
 
 
+
+# %%

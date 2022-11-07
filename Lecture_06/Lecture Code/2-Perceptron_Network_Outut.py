@@ -1,5 +1,8 @@
+#%%
 import numpy as np
 import matplotlib.pyplot as plt
+plt.style.use('seaborn-darkgrid')
+
 #  %%-----------------------------------------
 p = np.linspace(start=-8, stop=8, num=1000)
 #  %%-----------------------------------------
@@ -36,3 +39,5 @@ for i in range(len(a)):
         plt.scatter(p[i,0],p[i,1], color='green')
 plt.show()
 
+
+# %%

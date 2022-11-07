@@ -1,6 +1,8 @@
+#%%
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.special import softmax
+plt.style.use('seaborn-darkgrid')
 #  %%-----------------------------------------
 p = np.linspace(start=-8, stop=8, num=1000)
 #  %%-----------------------------------------
@@ -30,3 +32,5 @@ print(t_a1)
 
 
 
+
+# %%
