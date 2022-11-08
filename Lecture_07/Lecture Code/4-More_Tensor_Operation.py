@@ -1,6 +1,6 @@
 import torch
 
-x = torch.Tensor(2, 3) ; print(x)
+x = torch.Tensor(2, 3) ; print(x) #junk tensor(the number tensor )
 y = torch.rand(2, 3)
 z2 = torch.add(x, y); print(z2)
 print(torch.is_tensor(z2))
@@ -10,7 +10,7 @@ torch.add(x, y, out=z1)
 print(x.size())
 print(torch.numel(x))
 
-k = x.view(6); print(k)
+k = x.view(6); print(k) # 
 l = x.view(-1, 2); print(l)
 
 x1 = torch.randn(5, 3).type(torch.FloatTensor); print(x1)

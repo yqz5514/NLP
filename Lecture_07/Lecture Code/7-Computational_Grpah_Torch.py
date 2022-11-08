@@ -16,7 +16,7 @@ from torch import nn
 class model(nn.Module):
     def __init__(self, hidden_dim):
         super(model, self).__init__()
-        self.linear1 = nn.Linear(1, hidden_dim)
+        self.linear1 = nn.Linear(1, hidden_dim)# nn.Linear means (wp+b)
         self.act1 = torch.sigmoid
         self.linear2 = nn.Linear(hidden_dim, 1)
     def forward(self, x):
@@ -25,6 +25,8 @@ class model(nn.Module):
 import torch
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr = 0.001)
+
+# trainind loop
 # ----------------------------------------
 def train_loop (dataloader, model, loss, optimizer):
     size = len(dataloader.dataset)
@@ -32,5 +34,11 @@ def train_loop (dataloader, model, loss, optimizer):
         pred = model(X)
         loss = criterion(pred,y)
         optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+        loss.backward()# claculate gradient of weigts
+        optimizer.step()#if you have gradient, can do any optimazation
+        
+        #cross entrophy for classification
+        #A gradient simply measures the change in all weights with 
+        # regard to the change in error.
+        
+# how to do test loop?

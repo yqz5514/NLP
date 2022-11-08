@@ -149,3 +149,9 @@ plt.xlim(x_axis_min, x_axis_max)
 plt.ylim(y_axis_min, y_axis_max)
 plt.rcParams["figure.figsize"] = (10, 10)
 plt.show()
+
+#word2vec
+# issues:  inability to handle unknown or out-of-vocabulary (OOV) words.
+# - how to deal with this  : position embeding, transformer .....
+
+# generation, translation 

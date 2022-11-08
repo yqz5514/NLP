@@ -8,8 +8,8 @@
 # Design your classes that Sent 1 has positive sentiment and sent 2 has a negative sentiment.
 
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q1' + 20*'-')
  #%%
+ # if feature is 7, then is 1 by seven bc the 
 
 
 
@@ -26,8 +26,6 @@ print(20*'-' + 'Begin Q1' + 20*'-')
 # Use the same data in Example 1 but instead of hardlim use logsigmoid as transfer function.
 # modify your code inorder to classify negative and positive sentences correctly.
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q2' + 20*'-')
-
 #%%
 
 
@@ -43,8 +41,6 @@ print(20*'-' + 'Begin Q2' + 20*'-')
 # Plot the the function in 3d and then plot the counter plot with the all the steps.
 # use small value as a learning rate.
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q3' + 20*'-')
-
 #%%
 
 
@@ -65,7 +61,17 @@ print(20*'-' + 'End Q3' + 20*'-')
 
 # Train ADALINE network to find  a relationship between POS (just verbs and nouns) and the the length of the sentences.
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q4' + 20*'-')
+#%%
+#adaline nn is a = (wp+b), linear regeression
+
+# w(1,2), 1 by 2.....
+
+# length of sents = p
+# pos-tag-verb = l1
+# pos-tag-nouns = l2
+# for epoch
+#    for iteration
+#      
 
 
 
@@ -73,9 +79,7 @@ print(20*'-' + 'Begin Q4' + 20*'-')
 
 
 
-
-
-print(20*'-' + 'End Q4' + 20*'-')
+#%%
 # =================================================================
 # Class_Ex5:
 # Read the dataset.csv file. This datset is about the EmailSpam.
@@ -87,7 +91,6 @@ print(20*'-' + 'End Q4' + 20*'-')
 # Hint. Clean the datset, use all the preprocessing techniques that you learned.
 
 # ----------------------------------------------------------------
-print(20*'-' + 'Begin Q5' + 20*'-')
 
 
 

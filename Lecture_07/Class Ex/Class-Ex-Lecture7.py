@@ -45,14 +45,6 @@ print(20*'-' + 'Begin Q1' + 20*'-')
 
 
 
-
-
-
-
-
-
-
-
 print(20*'-' + 'End Q1' + 20*'-')
 
 # =================================================================
@@ -97,11 +89,12 @@ import numpy
 
 
 
+#=================================================================
+#%%
 
-
-
-print(20*'-' + 'End Q2' + 20*'-')
-
+# back propagation(gradient)
+# word embdding is freq mapping
+# all neruron network is all about add and multiplication 
 
 
 

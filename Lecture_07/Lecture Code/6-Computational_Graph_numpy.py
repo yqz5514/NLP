@@ -11,3 +11,10 @@ grad_a = grad_b.copy()
 grad_z = grad_b.copy()
 grad_x = grad_a * y
 grad_y = grad_a *x
+
+# graph is fast, designed by dictionary 
+# tabnet
+#%%
+import numpy as np
+np.random.randn(3,4)
+# %%

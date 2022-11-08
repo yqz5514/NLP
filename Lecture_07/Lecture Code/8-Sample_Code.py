@@ -1,10 +1,11 @@
 import torch
 from torch import nn
-from torchtext.data.utils import get_tokenizer
+from torchtext.data.utils import get_tokenizer# for NN
 from torchtext.vocab import build_vocab_from_iterator
 from torch.utils.data import DataLoader
 from torchtext.datasets import AG_NEWS
 import time
+# NLTK, spaCy can not work in gpu
 # ------------------------------------------------------------------------------
 train_iter = list(AG_NEWS(split='train'))
 test_iter = list(AG_NEWS(split='test'))
@@ -12,15 +13,15 @@ print(train_iter[0])
 # ------------------------------------------------------------------------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 tokenizer = get_tokenizer('basic_english')
-def yield_tokens(data_iter):
-    for _, text in data_iter:
+def yield_tokens(data_iter): # create dataloader
+    for _, text in data_iter: # iterate whoel sents..?
         yield tokenizer(text)
 
 vocab = build_vocab_from_iterator(yield_tokens(train_iter), specials=["<unk>"])
 vocab.set_default_index(vocab["<unk>"])
 print(vocab(['here', 'is', 'an', 'example']))
 # ------------------------------------------------------------------------------
-text_pipeline = lambda x: vocab(tokenizer(x))
+text_pipeline = lambda x: vocab(tokenizer(x)) 
 label_pipeline = lambda x: int(x) - 1
 print(text_pipeline('here is the an example'))
 print(label_pipeline('10'))
@@ -41,7 +42,7 @@ class TextClassificationModel(nn.Module):
     def __init__(self, vocab_size, embed_dim, num_class):
         super(TextClassificationModel, self).__init__()
         self.embedding = nn.EmbeddingBag(vocab_size, embed_dim)
-        self.fc = nn.Linear(embed_dim, num_class)
+        self.fc = nn.Linear(embed_dim, num_class) # one layer
         self.init_weights()
     def init_weights(self):
         initrange = 0.5
@@ -56,14 +57,19 @@ num_class = len(set([label for (label, text) in train_iter]))
 vocab_size = len(vocab)
 emsize = 64
 model = TextClassificationModel(vocab_size, emsize, num_class).to(device)
+#MLP
+# batch: number of observation, time: length of the sents, dimension(rich embedding)
+#embedding(lok up table, hash table)
+# nn.embedding is the first strp (the fly embedding training) 
 # ------------------------------------------------------------------------------
 def train(dataloader):
-    model.train()
+    model.train() #Put in train mode, can keep tracking each nuron shut down 
+    #check model drop out
     total_acc, total_count = 0, 0
     log_interval = 500
     start_time = time.time()
 
-    for idx, (label, text, offsets) in enumerate(dataloader):
+    for idx, (label, text, offsets) in enumerate(dataloader):# GPU does not have garbage collade, 0 out
         optimizer.zero_grad()
         predicted_label = model(text, offsets)
         loss = criterion(predicted_label, label)
@@ -81,7 +87,7 @@ def train(dataloader):
             start_time = time.time()
 
 def evaluate(dataloader):
-    model.eval()
+    model.eval()# inference
     total_acc, total_count = 0, 0
 
     with torch.no_grad():
@@ -100,6 +106,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=LR)
 # ------------------------------------------------------------------------------
 train_dataloader = DataLoader(train_iter, batch_size=BATCH_SIZE,
                               shuffle=True, collate_fn=collate_batch)
+#collate_fn can help deal with different length of each sents
 test_dataloader = DataLoader(test_iter, batch_size=BATCH_SIZE,
                               shuffle=True, collate_fn=collate_batch)
 
@@ -118,3 +125,7 @@ torch.save(model.state_dict(), 'model_weights.pt')
 # load the model first for inference
 model.load_state_dict(torch.load('model_weights.pt'))
 model.eval()
+
+
+# try it on BOW
+# why 
