@@ -42,7 +42,7 @@ tokens = []
 for token in doc:
     if (token.pos_ == 'NOUN') or (token.pos_ == 'VERB'):
         #print(token.text, token.pos_)
-        vec = token.vector
+        
         tokens.append(vec)
 
 #%%
