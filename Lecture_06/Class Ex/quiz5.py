@@ -18,7 +18,15 @@ sent2 = 'Natural language processing has nice tools for text mining and text cla
 sent3 = 'Ohhhhhh what'
 sent4 = 'I am not sure what I am doing is right.'
 sent5 = 'Neural Network is a powerful method. It is a very flexible architecture'
+#%%
+Corp = ['This is a sentence one and this is a sample text.',
+        'Natural language processing has nice tools for text mining and text classification. I need to work hard and try to learn it by doing exericses.',
+        'Ohhhhhh what',
+        'I am not sure what I am doing is right.',
+        'Neural Network is a powerful method. It is a very flexible architecture']
 
+# x = [len(i) for i in Corp]
+# print(x)
 #%%
 # find length of sentences
 sent = [sent1, sent2, sent3, sent4, sent5]
@@ -126,9 +134,6 @@ class AdaptiveLinearNeuron(object):
       """Return class label after unit step"""
       return np.where(self.activation(X) >= 0.0, 1, -1)
 
-#%%
-df1 = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
-
 
 #%%
 import matplotlib.pyplot as plt
@@ -171,5 +176,5 @@ sns.heatmap(corr,
             
 )
 plt.title('Correlation Coefficent between verbs, nouns and length of sentences')
-
+# Number of verbs and number of nouns has higher positive correlation with length of sentences
 # %%
