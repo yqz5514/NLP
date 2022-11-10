@@ -24,4 +24,4 @@ nouns_len = [len(list(filter(lambda x:x[1] == 'NN', nltk.pos_tag(word_tokenize(x
 df = pd.DataFrame({'Sents':sents, 'Sent_len':sent_len, 'Words Count':word_count, "Average Word Length":word_average_len,
                    'Nouns List ':nouns_list ,'Nouns Length':nouns_len,})
 
-df.to_excel('NLTK_Feature_Extraction.xlsx')
+df.to_excel('NLTK_Feature_Extraction.xlsx') 

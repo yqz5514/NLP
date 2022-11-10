@@ -24,7 +24,7 @@ df = pd.DataFrame({'Sents':l_less_sent_10, 'Sent_len':count_len_sent, 'Number_co
                    'Number_quote ':count_quote ,'Number_comma':count_comma,'Number_prime':count_prime,
                    'Number_dash ':count_dash ,})
 
-df.to_excel('Sample_Feature.xlsx')
+df.to_excel('Sample_Feature.xlsx')  
 
 
 

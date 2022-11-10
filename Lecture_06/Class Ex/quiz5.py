@@ -13,9 +13,6 @@
 # 2. Find all nouns and verbs in the sentences.
 # 3. Train an ADALINE network and plot the SSE.
 # 4. Find the relationship between nouns, verbs and the length of sentences.
-
-#%%
-
 sent1 = 'This is a sentence one and this is a sample text.'
 sent2 = 'Natural language processing has nice tools for text mining and text classification. I need to work hard and try to learn it by doing exericses.'
 sent3 = 'Ohhhhhh what'
@@ -27,28 +24,62 @@ sent5 = 'Neural Network is a powerful method. It is a very flexible architecture
 sent = [sent1, sent2, sent3, sent4, sent5]
 x = [len(i) for i in sent]
 print(x)
-# %%
-test = sent2.split(sep = '.')
-print(len(test))
+#%%
+type(x)
+# # %%
+# test = sent2.split(sep = '.')
+# print(len(test))
 # %%
 #2
 import spacy
+from collections import Counter
 
 #%%
 nlp = spacy.load("en_core_web_sm")
-#%%
-doc = nlp(sent2)
-tokens = []
-for token in doc:
-    if (token.pos_ == 'NOUN') or (token.pos_ == 'VERB'):
-        #print(token.text, token.pos_)
-        
-        tokens.append(vec)
+# #%%
+
+# cnt_nouns = []
+# cnt_verbs = []
+# for sents in sent:
+#    doc = nlp(sents)
+#    for token in doc:
+#       if (token.pos_ == 'NOUN') or (token.pos_ == 'VERB'):
+#          nouns = token
+#          cnt_nouns.append(len(nouns))
+#          verbs = token
+#          cnt_verbs.append(len(verbs))
+         
+# print(cnt_nouns, cnt_verbs)
 
 #%%
-print(tokens)        
+cnt_nouns = []
+cnt_verbs = []
+for sents in sent:
+   doc = nlp(sents)
+   nouns = [x for x in doc if x.pos_ == 'NOUN']
+   verbs = [x for x in doc if x.pos_ == 'VERB']
+   
+   #print(doc, len(nouns), len(verbs))
+   cnt_nouns.append(len(nouns))
+   cnt_verbs.append(len(verbs))
+print(cnt_nouns, cnt_verbs)
+         
+
 #%%
-# vectorization 
+# doc = nlp()
+# tokens = []
+# for token in doc:
+#     if (token.pos_ == 'NOUN') or (token.pos_ == 'VERB'):
+#       print(token.text, token.pos_)
+import pandas as pd     
+df = pd.DataFrame({'Sentence':sent, 
+                   'Num_Verb':cnt_verbs,
+                   'Num_Noun':cnt_nouns, 
+                   'Length':x,
+                   })
+df
+
+
 # %%
 #3. Train an ADALINE network and plot the SSE.
 
@@ -95,17 +126,19 @@ class AdaptiveLinearNeuron(object):
       """Return class label after unit step"""
       return np.where(self.activation(X) >= 0.0, 1, -1)
 
+#%%
+df1 = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
+
 
 #%%
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
 
-y = df.iloc[0:100, 4].values
-y = np.where(y == 'Iris-setosa', -1, 1)
-X = df.iloc[0:100, [0, 2]].values
+y = df.Length.values
+#y = np.where(y == 'Iris-setosa', -1, 1)
+X = df.iloc[0:100, [1, 3]].values
 
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(8, 4))
 
@@ -125,3 +158,4 @@ ax[1].set_xlabel('Epochs')
 ax[1].set_ylabel('Sum-squared-error')
 ax[1].set_title('Adaptive Linear Neuron - Learning rate 0.0001')
 plt.show()
+# %%
