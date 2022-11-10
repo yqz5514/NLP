@@ -140,7 +140,7 @@ y = df.Length.values
 #y = np.where(y == 'Iris-setosa', -1, 1)
 X = df.iloc[0:100, [1, 3]].values
 
-fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(8, 4))
+fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(10, 5))
 
 # learning rate = 0.01
 aln1 = AdaptiveLinearNeuron(0.01, 10).fit(X,y)
@@ -158,4 +158,18 @@ ax[1].set_xlabel('Epochs')
 ax[1].set_ylabel('Sum-squared-error')
 ax[1].set_title('Adaptive Linear Neuron - Learning rate 0.0001')
 plt.show()
+# %%
+# find the relationship between nouns, verbs and the length of sentences
+corr = df.corr()
+# %%
+import seaborn as sns 
+sns.heatmap(corr, 
+            linewidths=0.5, 
+            vmin = 0,
+            vmax = 1,
+            annot= True,
+            
+)
+plt.title('Correlation Coefficent between verbs, nouns and length of sentences')
+
 # %%
