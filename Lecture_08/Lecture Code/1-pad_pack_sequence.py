@@ -39,3 +39,25 @@ packed_output,(ht,ct)=lstm(packed_input)
 print(packed_output.data.shape)
 output, input_sizes = pad_packed_sequence(packed_output, batch_first=True)
 print(ht[-1])
+
+#%%
+# what kind of data this network try to accept?
+# sequenced data
+# what output we expected for this network?
+# sequenced data
+# what is output of first layer of mlp? what does it mean?
+# transformed input data in time....? and MLP does not preseverve order
+# why the input and output are delay?
+# what is the problem of infinite memory model?
+# vanish gradient, suffer from train procedure. 
+# the backprogagtion will not work for this because 
+# translation: two face problem
+# - understanding the meaning of it (encoder , encode english to some meaningful  )
+#   and convert it to another language(decoder, decode )
+# they are not happen semotineous, this called seq2seq
+# what is problem for seq2seq: not all sequence are important, so we use attention to select those sequence ahs most impact 
+# all of thme ar rnn
+# dot product is important becasue use it find similarity 
+# seq2seq attention
+# self attention
+#know to how to train RNN and add pack stack 

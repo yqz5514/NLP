@@ -54,7 +54,12 @@ class RNN(nn.Module):
     def __init__(self, input_dim, embedding_dim, hidden_dim, output_dim):
         super().__init__()
         self.embedding = nn.Embedding(input_dim, embedding_dim)
+        #output should be a tuple
+                # add code for this pack back
+
         self.rnn = nn.RNN(embedding_dim, hidden_dim)
+        #
+        # add code for this pack back
         self.fc = nn.Linear(hidden_dim, output_dim)
 
     def forward(self, text):
