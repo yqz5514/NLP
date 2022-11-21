@@ -1,11 +1,19 @@
+#%%
 import torch
 
 t = torch.rand(2, 1, 2, 1); print(t)
 r = torch.squeeze(t); print(r)
-r = torch.squeeze(t, 1); print(r)# decrease dimension
-
+print(t.shape)
+print(r.shape)
+#%%
+r = torch.squeeze(t, 3); print(r)# decrease dimension
+r.shape
+#%%
 
 x = torch.rand([1, 2, 3]); print(x)
+#%%
+x.shape()
+#%%
 r = torch.unsqueeze(x, 0); print(r)# add dimension 
 r = torch.unsqueeze(x, 1); print(r)
 # why you need create dimensions? espicially in nlp domain
