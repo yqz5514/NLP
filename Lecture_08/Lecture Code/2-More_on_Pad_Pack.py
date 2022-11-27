@@ -226,3 +226,4 @@ print(ht[-1])
 # (batch_size X max_seq_len X embedding_dim) --->      Pack     ---> (batch_sum_seq_len X embedding_dim)
 # (batch_sum_seq_len X embedding_dim)        --->      LSTM     ---> (batch_sum_seq_len X hidden_dim)
 # (batch_sum_seq_len X hidden_dim)           --->    UnPack     ---> (batch_size X max_seq_len X hidden_dim)
+#output形状为B × T × ∗ B \times T \times *B×T×∗，否则为T × B × ∗ T \times B \times *T×B×∗，默认情况为False。其中B BB为批次大小，T TT为填充后每个序列的长度。
