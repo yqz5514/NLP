@@ -1,20 +1,32 @@
+#%%
 import torch
 from torch.autograd import Variable
-x = Variable(torch.randn(3,4), requires_grad = True)
-y = Variable(torch.randn(3,4), requires_grad = True)
-z = Variable(torch.randn(3,4), requires_grad = True)
-a = x * y
+# a pytorch variable is a node in a cimputational graph
+#the autograd packages provides automatic differentiation for all operations on tensor
+#%%
+x = Variable(torch.randn(3,4), requires_grad = True);print(x)
+#%%
+y = Variable(torch.randn(3,4), requires_grad = True);print(y)
+#%%
+z = Variable(torch.randn(3,4), requires_grad = True);print(z)
+a = x * y;print(a)
 b = a + z
 c = torch.sum(b)
-
-c.backward()
+#%%
+print(c)
+#%%
+c.backward()#have all gradients computed automatically
+#%%
 print(x.grad.data)
+#%%
 print(y.grad.data)
 print(z.grad.data)
+#???????????????????????????????????????????
+#%%
 # ----------------------------------------
 from torch import nn
 class model(nn.Module):
-    def __init__(self, hidden_dim):
+    def __init__(self, hidden_dim):#initialize the neural network layers in __init__
         super(model, self).__init__()
         self.linear1 = nn.Linear(1, hidden_dim)# nn.Linear means (wp+b)
         self.act1 = torch.sigmoid
@@ -22,6 +34,7 @@ class model(nn.Module):
     def forward(self, x):
         return self.linear2(self.act1(self.linear1(x)))
 # ----------------------------------------
+# pass the models output logits to loss function
 import torch
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr = 0.001)

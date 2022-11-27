@@ -1,3 +1,4 @@
+#%%
 import torch
 from torch import nn
 from torchtext.data.utils import get_tokenizer# for NN
@@ -6,10 +7,12 @@ from torch.utils.data import DataLoader
 from torchtext.datasets import AG_NEWS
 import time
 # NLTK, spaCy can not work in gpu
+#%%
 # ------------------------------------------------------------------------------
 train_iter = list(AG_NEWS(split='train'))
 test_iter = list(AG_NEWS(split='test'))
 print(train_iter[0])
+#%%
 # ------------------------------------------------------------------------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 tokenizer = get_tokenizer('basic_english')
@@ -98,6 +101,7 @@ def evaluate(dataloader):
             total_count += label.size(0)
     return total_acc/total_count
 # ------------------------------------------------------------------------------
+#hyperparameters
 EPOCHS = 10
 LR = 0.001
 BATCH_SIZE = 64

@@ -1,3 +1,4 @@
+#%%
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -5,6 +6,7 @@ import torch
 import torch.nn as nn
 import random
 import numpy
+#%%
 # -------------------------------------------------------------------------------------
 LR = 1e-2
 N_EPOCHS =2000
@@ -95,8 +97,8 @@ Y_train = np.asarray(Y)
 class MLP(nn.Module):
     def __init__(self, hidden_dim):
         super(MLP, self).__init__()
-        self.linear1 = nn.Linear(12, hidden_dim)
-        self.linear2 = nn.Linear(hidden_dim, 12)
+        self.linear1 = nn.Linear(12, hidden_dim) #necoder
+        self.linear2 = nn.Linear(hidden_dim, 12)#decodder
         self.act1 = torch.nn.Softmax(dim=1)
     def forward(self, x):
         out_em = self.linear1(x)
@@ -155,3 +157,5 @@ plt.show()
 # - how to deal with this  : position embeding, transformer .....
 
 # generation, translation 
+
+# %%
